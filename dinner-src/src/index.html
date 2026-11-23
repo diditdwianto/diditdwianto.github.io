@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06080d">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex">
+  <meta name="format-detection" content="telephone=no">
+  <title>Wonderful · Pesan Minuman</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://indonesia.api.demo.wonderful.ai">
+  <link rel="preload" as="image" href="orb.webp">
+  <link rel="preload" as="image" href="wordmark.png">
+  <link rel="stylesheet" href="style.css?v=__V__">
+</head>
+<body>
+  <main id="app" data-state="idle">
+    <header class="top">
+      <img class="brand" src="wordmark.png" alt="Wonderful" width="81" height="20" decoding="async">
+    </header>
+
+    <div id="inapp" class="banner" hidden>
+      <p class="banner-id" id="inapp-id"></p>
+      <p class="banner-en" id="inapp-en"></p>
+      <p class="banner-step" id="step-id"></p>
+      <p class="banner-step en" id="step-en"></p>
+      <a id="inapp-open" class="btn btn-light" href="#" hidden><span class="id" id="open-id">Buka di browser</span><span class="en" id="open-en">Open in browser</span></a>
+      <button id="copy" class="btn btn-quiet" type="button"><span class="id" id="copy-id">Salin link</span><span class="en" id="copy-en">Copy link</span></button>
+      <input id="copy-url" class="copy-url" type="text" readonly hidden aria-label="Link">
+    </div>
+
+    <section class="welcome" id="welcome">
+      <p class="hello" id="hello" hidden>Selamat datang <span class="en">· Welcome</span></p>
+      <h1 class="who" id="who">Selamat datang</h1>
+      <p class="who-en" id="who-en">Welcome</p>
+    </section>
+
+    <div class="stage">
+      <button id="talk" class="orb-btn" type="button" aria-label="Ketuk untuk pesan minuman · Tap to order a drink">
+        <span class="orb">
+          <img class="orb-still" src="orb.webp" alt="" width="200" height="200" decoding="async" fetchpriority="high">
+          <canvas class="orb-live" hidden></canvas>
+        </span>
+      </button>
+
+      <section class="status" aria-live="polite">
+        <p class="status-id" id="status-id">Ketuk untuk pesan minuman</p>
+        <p class="status-en" id="status-en">Tap to order a drink</p>
+      </section>
+    </div>
+
+    <div class="talkback">
+      <section class="lines" id="lines" hidden>
+        <p class="line guest" id="line-guest"></p>
+        <p class="line agent" id="line-agent"></p>
+      </section>
+
+      <section class="received" id="received" hidden aria-live="polite">
+        <div class="received-head">
+          <svg class="tick" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.1L17 8.8"/></svg>
+          <div>
+            <p class="received-id">Pesanan diterima</p>
+            <p class="received-en">Order received</p>
+          </div>
+        </div>
+        <p class="received-text" id="received-text"></p>
+        <p class="received-note">Pelayan akan mengantarkannya. <span class="en">A waiter will bring it over.</span></p>
+      </section>
+    </div>
+
+    <footer class="dock">
+      <p class="hint" id="hint">Dekatkan ponsel ke mulut, seperti mengirim pesan suara<br><span class="en">Hold the phone close, like a voice message.</span></p>
+      <button id="end" class="btn btn-quiet" type="button" hidden><span class="id">Akhiri</span><span class="en">End</span></button>
+      <button id="again" class="btn btn-light" type="button" hidden><span class="id">Pesan lagi</span><span class="en">Order another</span></button>
+    </footer>
+  </main>
+  <script type="module" src="app.js?v=__V__"></script>
+</body>
+</html>
