@@ -75,7 +75,10 @@ const INDONESIAN = /\b(saya|anda|mau|pesan|pesanan|sudah|silakan|boleh|minuman|k
 const KEY = `dd-calls:${guest ?? (seat ? `s${seat}` : "-")}`;
 const store = { get: () => { try { return Number(localStorage.getItem(KEY)) || 0; } catch { return 0; } }, bump() { try { localStorage.setItem(KEY, String(this.get() + 1)); } catch {} } };
 // Walk-in link (no params): a house phone passes from guest to guest, so every call is a first call.
-const WALKIN = !name && !seat && !guest;
+// The shared "Guest" link (delegates, guests who arrive on the spot): many people, so it greets like a walk-in
+// and asks for the name; the agent knows the link by its guest id.
+const SHARED = !!guest && /^(guest|tamu)$/i.test(name ?? "");
+const WALKIN = (!name && !seat && !guest) || SHARED;
 const wasHere = () => !WALKIN && store.get() > 0;
 let returning = wasHere();
 
@@ -141,7 +144,7 @@ const buzz = (p) => navigator.vibrate?.(p);
 
 // ---- welcome: by name on an email link, else the seat (old QR cards), else the walk-in welcome (no params)
 $("hello").hidden = false;
-if (name) {
+if (name && !SHARED) {
   $("who").textContent = name;
   $("who-en").hidden = true;
 } else if (seat) {
@@ -401,7 +404,7 @@ async function start() {
       locale: "id",
       metadata: {
         ...(guest && { guest }),
-        ...(name && { name }),
+        ...(name && !SHARED && { name }),
         ...(seat && { seat: String(seat) }),
         lang: (params.get("lang") || navigator.language || "").slice(0, 2).toLowerCase(),
       },
