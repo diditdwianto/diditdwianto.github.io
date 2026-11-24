@@ -110,7 +110,7 @@
     if (found.length === 1) show(found[0], true);
   });
 
-  fetch("guests.json?v=1", { cache: "no-cache" })
+  fetch("guests.json?v=2", { cache: "no-cache" })
     .then(function (r) { return r.json(); })
     .then(function (list) {
       guests = list.map(function (g) { return { n: g.n, c: g.c || "", t: g.t || "", g: g.g, nameKey: fold(g.n), companyKey: fold(g.c) }; });
