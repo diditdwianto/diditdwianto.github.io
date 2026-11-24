@@ -58,7 +58,7 @@
       var b = el("button");
       b.type = "button";
       b.appendChild(el("span", "r-name", g.n));
-      b.appendChild(el("span", "r-meta", [g.t, g.c].filter(Boolean).join(" · ")));
+      if (g.c) b.appendChild(el("span", "r-meta", g.c));
       b.addEventListener("click", function () { show(g, true); });
       li.appendChild(b);
       results.appendChild(li);
@@ -77,7 +77,8 @@
   function show(g, push) {
     var link = linkOf(g);
     $("g-name").textContent = g.n;
-    $("g-meta").textContent = [g.t, g.c].filter(Boolean).join(" · ");
+    $("g-meta").textContent = g.c;
+    $("g-meta").hidden = !g.c;
     $("qr").innerHTML = qrSvg(link);
     $("qr").setAttribute("aria-label", "QR · " + g.n);
     $("open").href = link;
@@ -110,10 +111,10 @@
     if (found.length === 1) show(found[0], true);
   });
 
-  fetch("guests.json?v=2", { cache: "no-cache" })
+  fetch("guests.json?v=3", { cache: "no-cache" })
     .then(function (r) { return r.json(); })
     .then(function (list) {
-      guests = list.map(function (g) { return { n: g.n, c: g.c || "", t: g.t || "", g: g.g, nameKey: fold(g.n), companyKey: fold(g.c) }; });
+      guests = list.map(function (g) { return { n: g.n, c: g.c || "", g: g.g, nameKey: fold(g.n), companyKey: fold(g.c) }; });
       if (location.hash) fromHash();
       render();
     })
