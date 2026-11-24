@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06080d">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="format-detection" content="telephone=no">
+  <title>Wonderful · Cari QR Anda</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <main>
+    <header class="top">
+      <img class="brand" src="../dinner/wordmark.png" alt="Wonderful" width="81" height="20" decoding="async">
+    </header>
+
+    <section class="intro">
+      <h1>Cari QR Anda</h1>
+      <p class="sub en">Find your QR code</p>
+      <p class="lead">Ketik nama Anda untuk melihat QR pesan minuman. <span class="en">Type your name to see your drink-order QR.</span></p>
+    </section>
+
+    <section id="search-view">
+      <label class="search">
+        <span class="sr">Nama · Name</span>
+        <input id="q" type="search" inputmode="search" autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false" placeholder="Nama Anda · Your name" enterkeyhint="search">
+      </label>
+      <p class="note" id="note" aria-live="polite"></p>
+      <ul class="results" id="results"></ul>
+    </section>
+
+    <section id="qr-view" class="card" hidden aria-live="polite">
+      <p class="name" id="g-name"></p>
+      <p class="meta" id="g-meta"></p>
+      <div class="qr" id="qr" role="img" aria-label="QR"></div>
+      <p class="scan">Pindai dengan kamera ponsel, atau ketuk tombol di bawah. <span class="en">Scan with a phone camera, or tap the button below.</span></p>
+      <a class="btn btn-light" id="open" href="#"><span>Buka halaman pesan</span><span class="en">Open my drink page</span></a>
+      <button class="btn btn-quiet" id="back" type="button"><span>Cari nama lain</span><span class="en">Search another name</span></button>
+    </section>
+
+    <p class="foot">AI Leaders Dinner · Wonderful Indonesia</p>
+  </main>
+  <script src="qrcode.js"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>
